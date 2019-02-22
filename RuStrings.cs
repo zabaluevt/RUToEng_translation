@@ -24,19 +24,16 @@ namespace RUToEng_translation
         {
             string file = ReadFile(path);
 
-            Regex regex = new Regex("\"[А-я!\\ {01234},.]+");
+            Regex regex = new Regex(@"[^"">/]+[А-я]+[^""<\n]+");
             var matches = regex.Matches(file);
-
-            Regex regexRu = new Regex("[А-я]");
 
             foreach (var item in matches)
             {
-                if (item.ToString().Length > 4 && regexRu.IsMatch(item.ToString()))
+                if (!item.ToString().EndsWith(".jpg"))
                 {
-                    if (!item.ToString().Remove(0, 1).Equals(collection.LastOrDefault()?.Value))
-                        collection.Add(new PathAndValue(item.ToString().Remove(0, 1), path));
+                    if (!item.ToString().EndsWith(".png"))
+                        collection.Add(new PathAndValue(item.ToString(), path));
                 }
-                   
             }
         }
 

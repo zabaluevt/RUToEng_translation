@@ -139,7 +139,7 @@ namespace RUToEng_translation
             var collection = ruStrings.collection;
 
             foreach (var item in collection)
-                Console.WriteLine(item.Value + "   " + item.Path);
+                Console.WriteLine(item.Value);
 
             SaveToExcel(ruStrings.collection);
             Console.WriteLine("Файл сохранен");
