@@ -15,3 +15,10 @@ bin/Debug/RUToEng_translation.exe
 .vs/RUToEng_translation/v15/Server/sqlite3/storage.ide
 .vs/RUToEng_translation/v15/Server/sqlite3/db.lock
 .vs/RUToEng_translation/v15/.suo
+obj/Debug/RUToEng_translation.csproj.CopyComplete
+bin/Debug/Microsoft.Practices.ServiceLocation.dll
+bin/Debug/Microsoft.Practices.Prism.dll
+bin/Debug/ExaminationProtocolFormEditor.pdb
+bin/Debug/ExaminationProtocolFormEditor.exe.config
+bin/Debug/ExaminationProtocolFormEditor.exe
+bin/Debug/EXAMPLES/SorsMs/Mammography_Screening/v0/FIELDS.xml

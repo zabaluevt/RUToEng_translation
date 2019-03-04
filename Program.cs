@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProtocolFieldDefinitionsEditor;
+using ProtocolFieldDefinitionsEditor.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -18,6 +20,7 @@ namespace RUToEng_translation
             Console.WriteLine("Введите 2 перевода слов в документах");
             Console.WriteLine("Введите 3 выделение строки");
             Console.WriteLine("Введите 4 в новый ресурсный файл");
+            Console.WriteLine("Введите 5 для получения русских слов из xml файла");
             var parameter = Console.ReadLine();
             switch (parameter)
             {
@@ -33,12 +36,73 @@ namespace RUToEng_translation
                 case "4":
                     AddResourceFile();
                     break;
+                case "5":
+                    ParseXMLFile();
+                    break;
                 default:
                     Console.WriteLine("Неправильный ввод");
                     break;
             }
             Console.WriteLine("Программа закончила свою работу!");
             Console.ReadKey();
+        }
+
+        private static void ParseXMLFile()
+        {
+            Console.WriteLine("Введите путь xml файла:");
+            string xmlFilePath = Console.ReadLine();
+
+            //string xmlFilePath = @"C:\Users\workstation1\Desktop\sors\UZI\ее\1.xml";
+
+            string str;
+            using (StreamReader sr = new StreamReader(File.Open(xmlFilePath, FileMode.Open)))
+            {
+                str = sr.ReadToEnd();
+            }
+
+            // ! Обязательно удалить строчку в xml файле:  xmlns="http://tempuri.org/FormalDocumentFieldDefinitions"
+            //
+
+            FormalDocumentFieldDefinitionsCollection collection = EntityDataHelper.Deserialize<FormalDocumentFieldDefinitionsCollection>(str);
+            List<string> list = new List<string>();
+            Regex regex = new Regex(@"[А-я]");
+
+            foreach (var field in collection.Fields)
+            {
+
+                if (regex.IsMatch(field.DisplayedName))
+                {
+                    CheckIfNotExist(list, field.DisplayedName);
+                }
+
+                foreach (var value in field.FormalDocumentFieldValueDefinitions)
+                {
+                    if (regex.IsMatch(value.DisplayedValue))
+                    {
+                        CheckIfNotExist(list, value.DisplayedValue);
+                    }
+                }
+            }
+
+            foreach (var field in collection.Groups)
+            {
+                bool isMatch = regex.IsMatch(field.DisplayedName);
+                if (isMatch)
+                {
+                    CheckIfNotExist(list, field.DisplayedName);
+                }
+            }
+
+            SaveToExcel(list);
+        }
+
+        private static void CheckIfNotExist(List<string> list, string displayedName)
+        {
+            if (!list.Contains(displayedName))
+            {
+                list.Add(displayedName);
+                System.Console.WriteLine(displayedName);
+            }
         }
 
         private static void AddResourceFile()
@@ -148,6 +212,22 @@ namespace RUToEng_translation
 
             Console.WriteLine("\nВремя работы программы: " + (stopTime.Second - startTime.Second) + " секунд");
             Console.WriteLine("\nКоличество элементов: " + collection.Count);
+        }
+
+        public static void SaveToExcel(List<string> list)
+        {
+            Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Add();
+            Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+            ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[1];
+
+            for (int i = 1; i < list.Count(); i++)
+            {
+                ObjWorkSheet.Cells[i, 1] = list[i];
+            }
+
+            ObjWorkBook.SaveAs("C:\\Users\\workstation1\\Desktop\\Excel\\XML.xlsx");
+            ObjExcel.Quit();
         }
 
         public static void SaveToExcel(Collection<PathAndValue> collection)

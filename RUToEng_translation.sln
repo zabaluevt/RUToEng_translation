@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUToEng_translation", "RUToEng_translation.csproj", "{7336E65E-7CBD-419B-AAF5-6C6A01E6E346}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExaminationProtocolFormEditor", "..\..\..\Users\workstation1\Documents\TMC\sources-axbit-tmc\Tools\FormalDocumentsTools\ExaminationProtocolFormEditor\ExaminationProtocolFormEditor\ExaminationProtocolFormEditor.csproj", "{73646DC9-9FE1-432C-A853-F38A5E07A6EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7336E65E-7CBD-419B-AAF5-6C6A01E6E346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7336E65E-7CBD-419B-AAF5-6C6A01E6E346}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7336E65E-7CBD-419B-AAF5-6C6A01E6E346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73646DC9-9FE1-432C-A853-F38A5E07A6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73646DC9-9FE1-432C-A853-F38A5E07A6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73646DC9-9FE1-432C-A853-F38A5E07A6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73646DC9-9FE1-432C-A853-F38A5E07A6EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

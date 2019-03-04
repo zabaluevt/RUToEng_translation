@@ -54,5 +54,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Users\workstation1\Documents\TMC\sources-axbit-tmc\Tools\FormalDocumentsTools\ExaminationProtocolFormEditor\ExaminationProtocolFormEditor\ExaminationProtocolFormEditor.csproj">
+      <Project>{73646DC9-9FE1-432C-A853-F38A5E07A6EB}</Project>
+      <Name>ExaminationProtocolFormEditor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
